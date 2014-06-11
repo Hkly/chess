@@ -1,0 +1,40 @@
+class Pawn < SteppingPiece
+  def move_deltas
+    dy = color == :black ? 1 : -1
+    [ [dy, 0], [dy, 1], [dy, -1] ]
+  end
+  
+  def valid_moves
+    moves = first_move
+
+    self.possible_moves.each do |move|
+      unless self.move_into_check?(move)
+        if move.last == 0 && @board.empty?(move)
+          moves << move
+        elsif move.last != 0
+          next if @board.empty?(move)
+          moves << move if @board.capturable?(move)
+        end
+      end
+    end
+    moves
+  end
+  
+  def first_move
+    starting_row = color == :white ? 6 : 1
+    current_row = @position.first
+    move = []
+    
+    if current_row == starting_row
+      x = @position.first + move_deltas.first[0]
+      y = @position.last
+      one_step =  [x, y]
+      delta = color == :white ? -2 : 2
+      second_step = [current_row + delta, y]
+      if @board.empty?(second_step) && @board.empty?(one_step)
+        move <<  second_step 
+      end
+    end
+    move
+  end
+end
