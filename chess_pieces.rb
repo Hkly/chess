@@ -12,7 +12,7 @@ class Piece
   
   def valid_moves
     self.possible_moves.select do |move|
-      move unless move_into_check?(move)
+      !move_into_check?(move)
     end
   end
 
@@ -27,7 +27,7 @@ class Piece
   def move_into_check?(pos)
     # will making this move leave me in check?
     dupped_board = @board.deep_dup
-    dupped_board.move(@position, pos)
+    dupped_board.move!(@position, pos)
     dupped_board.in_check?(@color)
   end
 end

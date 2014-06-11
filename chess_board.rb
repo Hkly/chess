@@ -45,10 +45,13 @@ class Board
   def move(start, end_pos)
     raise "No piece." if empty?(start)
     piece = self[start]    
-    raise "Invalid move." unless piece.possible_moves.include?(end_pos)
+    raise "Invalid move." unless piece.valid_moves.include?(end_pos)
     piece.position = end_pos
-    self[end_pos] = piece
-    self[start] = nil
+    move!(start, end_pos)
+  end
+  
+  def move!(start, end_pos)
+    self[start], self[end_pos] = nil, self[start]
   end
   
   def on_board?(row, col)

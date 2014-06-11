@@ -9,9 +9,9 @@ class Pawn < SteppingPiece
 
     self.possible_moves.each do |move|
       unless self.move_into_check?(move)
-        if move.last == 0 && @board.empty?(move)
+        if move.last == @position.last && @board.empty?(move)
           moves << move
-        elsif move.last != 0
+        elsif move.last != @position.last
           next if @board.empty?(move)
           moves << move if @board.capturable?(move)
         end
