@@ -4,17 +4,15 @@ class Pawn < SteppingPiece
     [ [dy, 0], [dy, 1], [dy, -1] ]
   end
   
-  def valid_moves
+  def possible_moves
     moves = first_move
 
-    self.possible_moves.each do |move|
-      unless self.move_into_check?(move)
-        if move.last == @position.last && @board.empty?(move)
-          moves << move
-        elsif move.last != @position.last
-          next if @board.empty?(move)
-          moves << move if @board.capturable?(move)
-        end
+    super.each do |move|
+      if move.last == @position.last && @board.empty?(move)
+        moves << move
+      elsif move.last != @position.last
+        next if @board.empty?(move)
+        moves << move if @board.capturable?(move)
       end
     end
     moves

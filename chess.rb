@@ -14,3 +14,8 @@ if $PROGRAM_NAME == __FILE__
   a = Game.new
   a.play
 end
+
+# b = Board.make_starting_board
+# b.place_piece(Queen, [5, 7], :white)
+# b.place_piece(Rook, [6, 6], :white)
+# b.place_piece(King, [7, 0], :black)

@@ -21,6 +21,7 @@ class Game
       active_player.play_turn
       active_player = toggle_player(active_player)
     end
+    puts "CHECK MATE!!!"
   end
   
   def toggle_player(active_player)
