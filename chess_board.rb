@@ -90,6 +90,21 @@ class Board
     return @board.each {|r| p r}
   end
   
+  def render
+    puts "   0  1  2  3  4  5  6  7"
+    @board.each_with_index do |row, i|
+      print "#{i}:"
+      row.each do |tile|
+        if tile.nil?
+          print " _ "
+        else
+          print " #{tile.inspect} "
+        end
+      end
+      puts
+    end
+  end
+  
   def [](pos)
     x = pos[0]
     y = pos[1]

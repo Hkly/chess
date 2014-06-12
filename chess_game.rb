@@ -17,7 +17,7 @@ class Game
   def play
     active_player = @white_player
     until @grid.checkmate?(:black) || @grid.checkmate?(:white)
-      @grid.inspect
+      @grid.render
       active_player.play_turn
       active_player = toggle_player(active_player)
     end
