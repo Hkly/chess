@@ -9,6 +9,7 @@ require_relative 'queen'
 require_relative 'king'
 require_relative 'knight'
 require_relative 'chess_game'
+require_relative 'human_player'
 
 if $PROGRAM_NAME == __FILE__
   a = Game.new

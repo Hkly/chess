@@ -12,7 +12,7 @@ class Pawn < SteppingPiece
         moves << move
       elsif move.last != @position.last
         next if @board.empty?(move)
-        moves << move if @board.capturable?(move)
+        moves << move if @board.capturable?(move, @color)
       end
     end
     moves
